@@ -19,6 +19,39 @@
   "homepage": "https://github.com/weishiji/isomorphic-app#readme",
   "dependencies": {
     "@material-ui/core": "^1.0.0",
-    "@material-ui/icons": "^1.0.0"
+    "@material-ui/icons": "^1.0.0",
+    "assets-webpack-plugin": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "classnames": "^2.2.5",
+    "compression": "^1.7.2",
+    "connect-timeout": "^1.9.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "history": "^4.7.2",
+    "isomorphic-fetch": "^2.2.1",
+    "mysql": "^2.15.0",
+    "pug": "^2.0.3",
+    "qs": "^6.5.2",
+    "react-document-title": "^2.0.3",
+    "react-jss": "^8.4.0",
+    "react-loadable": "^5.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-config": "^1.0.0-beta.4",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "dotenv-webpack": "^1.5.5",
+    "errorhandler": "^1.5.0",
+    "webpack": "^4.8.3",
+    "webpack-merge": "^4.1.2"
   }
 }
