@@ -11,10 +11,6 @@ package-lock.json
 dist/
 .DS_Store
 
-server/middleware/handleRender.js
 server/public/
-Test.js
-Test.html
 .env
-compile-build.sh
 

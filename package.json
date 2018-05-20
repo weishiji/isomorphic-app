@@ -1,0 +1,24 @@
+{
+  "name": "isomorphic-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.spellcheck.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weishiji/isomorphic-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/weishiji/isomorphic-app/issues"
+  },
+  "homepage": "https://github.com/weishiji/isomorphic-app#readme",
+  "dependencies": {
+    "@material-ui/core": "^1.0.0",
+    "@material-ui/icons": "^1.0.0"
+  }
+}
