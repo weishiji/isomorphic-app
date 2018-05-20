@@ -7,7 +7,6 @@ import entities from './entities';
 const rootReducer = combineReducers({
   ui,
   form,
-  socket,
   entities,
 });
 
