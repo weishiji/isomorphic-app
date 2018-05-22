@@ -10,9 +10,8 @@
 - ``` ./node_modules/.bin/eslint --init```
 - 选择```Airbnb```风格的语法检测
 
-```webpack babel-loader```等开发工具的安装
+```webpack babel-loader babelrc```等开发基础的安装
 -------------
-- ```npm install babel-loader babel-core babel-preset-env webpack```
-
-```module-resolver```解决```babelrc```中路径的问题
+- ```npm install babel-loader babel-core babel-preset-env webpack -D```
 - ``` npm install babel-plugin-module-resolver -D```
+- ``` npm install babel-preset-react -D```
