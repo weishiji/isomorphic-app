@@ -51,6 +51,7 @@ const commonConfig = merge([
     ],
 
   },
+  parts.split(),
   parts.cleanBuildPath({ include: PATHS.build }),
   parts.loadJavaScript({ include: [PATHS.client, PATHS.app] }),
   parts.loadImages({
@@ -59,13 +60,6 @@ const commonConfig = merge([
       name: '[name].[hash:8].[ext]',
     },
   }),
-  parts.extractBundles([
-    {
-      name: ['lib', 'vendor'],
-      minChunks: 2,
-    },
-  ]),
-
   parts.happyPackThread('js', ['babel-loader']),
   parts.happyPackThread('jsx', ['babel-loader']),
 ]);

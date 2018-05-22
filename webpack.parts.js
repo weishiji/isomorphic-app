@@ -5,6 +5,9 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const HappyPack = require('happypack');
+
+const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
 exports.cleanBuildPath = ({ include }) => ({
   plugins: [
@@ -100,14 +103,26 @@ exports.setMode = mode => ({
 });
 
 exports.split = () => ({
-  plugins: [new webpack.optimize.spl({
-
-  })]
-})
-exports.extractBundles = bundles => ({
-  plugins: bundles.map(bundle => (
-    new webpack.optimize.CommonsChunkPlugin(bundle)
-  )),
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'async',
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: '~',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          enforce: true,
+          chunks: 'all',
+        },
+      },
+    },
+  },
 });
 exports.setFreeVariable = (key, value) => {
   const env = {};
@@ -123,6 +138,19 @@ exports.attachRevision = () => ({
   plugins: [
     new webpack.BannerPlugin({
       banner: new GitRevisionPlugin().version(),
+    }),
+  ],
+});
+/**
+ * id string required
+ * loaders Array required
+ */
+exports.happyPackThread = (id, loaders) => ({
+  plugins: [
+    new HappyPack({
+      id,
+      threadPool: happyThreadPool,
+      loaders,
     }),
   ],
 });
