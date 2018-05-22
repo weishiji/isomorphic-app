@@ -99,6 +99,11 @@ exports.setMode = mode => ({
   mode,
 });
 
+exports.split = () => ({
+  plugins: [new webpack.optimize.spl({
+
+  })]
+})
 exports.extractBundles = bundles => ({
   plugins: bundles.map(bundle => (
     new webpack.optimize.CommonsChunkPlugin(bundle)
