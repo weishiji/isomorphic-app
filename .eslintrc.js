@@ -1,3 +1,11 @@
 module.exports = {
-    "extends": "airbnb"
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": 0,
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {},
+    },
+  },
 };
