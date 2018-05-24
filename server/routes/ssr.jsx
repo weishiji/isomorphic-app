@@ -16,46 +16,21 @@ import { JssProvider, SheetsRegistry } from 'react-jss';
 import StaticRouter from 'react-router-dom/StaticRouter';
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
-// import theme from 'theme';
+import theme from 'theme';
 
 // import routes from 'routes';
-// import reducers from 'reducers';
+import reducers from 'reducers';
 // import stats from 'public/react-loadable.json';
 
 import { Countdown as CountdownAction } from 'actions';
 
-console.log(CountdownAction, 'this si action');
-
 const router = express.Router();
 
-// 从前端路有配置中读取所有的routes的path，匹配到后端路由中去
-const getAllPath = (() => {
-  var routesPath = [];
-  function _getPath(routes) {
-    routes.map(route => {
-      if (route.path) {
-        routesPath.push(route.path);
-      }
-      if (route.routes) {
-        _getPath(route.routes);
-      }
-    });
-  }
-  return function(routes){
-    _getPath(routes);
-    return routesPath;
-  };
-}());
-
-
-/*eslint-enable*/
 router.get('*', (req, res, next) => {
-  let startRouteTime = new Date().getTime();
-  console.log('start page route....',startRouteTime);
   const { path, url, query, params } = req;
   const store = createStore(reducers, applyMiddleware(thunk));
 
-  if(url.match('api')){
+  if (url.match('api')) {
     return next();
   }
   // Create a sheetsRegistry instance.
@@ -105,17 +80,16 @@ router.get('*', (req, res, next) => {
     if (context.status === 302) {
       return res.redirect(302, context.url);
     }
-    console.log('endRouteTime',(new Date().getTime() - startRouteTime) / 1000);
     //TODO:禁止服务端渲染
     res.render('index', {
-      html : process.env.NODE_ENV == 'production' ? html : '',
+      html: process.env.NODE_ENV === 'production' ? html : '',
       _async_fetch,
       preloadedState: JSON.stringify(store.getState())
         .replace(/</g, '\\u003c')
         .replace(/\u2028/g, '\\u2028')
         .replace(/\u2029/g, '\\u2029'),
       css: sheetsRegistry.toString(),
-      bundles : [jsBunles.vendor.js,jsBunles.lib.js,jsBunles.client.js,...bundles],
+      bundles: [jsBunles.vendor.js, jsBunles.lib.js, jsBunles.client.js, ...bundles],
       userId,
     });
   });
