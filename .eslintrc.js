@@ -6,6 +6,7 @@ module.exports = {
     "class-methods-use-this": "off",
     "no-nested-ternary": "off",
     "no-confusing-arrow": "off",
+    "react/forbid-prop-types": "on",
   },
   "settings": {
     "import/resolver": {

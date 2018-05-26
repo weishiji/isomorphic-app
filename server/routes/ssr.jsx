@@ -17,14 +17,30 @@ import StaticRouter from 'react-router-dom/StaticRouter';
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 
 import theme from 'theme';
-
-// import routes from 'routes';
+import routes from 'routes';
 import reducers from 'reducers';
-// import stats from 'public/react-loadable.json';
+
+import stats from 'public/react-loadable.json';
 
 import { Countdown as CountdownAction } from 'actions';
 
 const router = express.Router();
+
+const jsBunles =
+  fs.existsSync(path.join(__dirname, '../public/react-loadable.json')) ?
+    require('public/webpack-assets.json') :
+    {
+      vendor: {
+        js: 'vendor.js',
+      },
+      runtime: {
+        js: 'runtime.js',
+      },
+      client: {
+        js: 'client.js',
+      },
+    };
+
 
 router.get('*', (req, res, next) => {
   const { path, url, query, params } = req;
@@ -45,11 +61,12 @@ router.get('*', (req, res, next) => {
 
   let userId = 0;
   // user session store
-  if (req.session && req.session.user) {
-    store.dispatch(UserAction.signinSuccess(req.session.user));
-    userId = store.getState().user.data.userId;
-  }
+  // if (req.session && req.session.user) {
+  //   store.dispatch(UserAction.signinSuccess(req.session.user));
+  //   userId = store.getState().user.data.userId;
+  // }
   let _async_fetch = true;
+
   //if(path.match(pathToRegexp('/editorial/channel/:type(\\w+-\\d+-\\d+)'))){
   //  _async_fetch = false;
   //  promises.push(store.dispatch(EditorialChannelAction.fetch(params)));
@@ -72,7 +89,7 @@ router.get('*', (req, res, next) => {
       </JssProvider>
     );
 
-    let bundles = getBundles(stats, modules).map(bundle => bundle.file);
+    const bundles = getBundles(stats, modules).map(bundle => bundle.file);
 
     if (context.status === 404) {
       res.status(404);
@@ -80,7 +97,7 @@ router.get('*', (req, res, next) => {
     if (context.status === 302) {
       return res.redirect(302, context.url);
     }
-    //TODO:禁止服务端渲染
+    // TODO:禁止服务端渲染
     res.render('index', {
       html: process.env.NODE_ENV === 'production' ? html : '',
       _async_fetch,

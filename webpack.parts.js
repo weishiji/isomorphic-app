@@ -5,6 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
 const HappyPack = require('happypack');
 
 const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
@@ -151,6 +152,17 @@ exports.happyPackThread = (id, loaders) => ({
       id,
       threadPool: happyThreadPool,
       loaders,
+    }),
+  ],
+});
+
+exports.assets = ({ filename, path, fullPath = false }) => ({
+  plugins: [
+    new AssetsPlugin({
+      filename,
+      path,
+      fullPath,
+      prettyPrint: true,
     }),
   ],
 });

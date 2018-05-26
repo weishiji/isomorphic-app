@@ -86,7 +86,7 @@ app.use(ssr);
 app.use('/api', api);
 
 // spicify the public folder
-app.use(express.static(path.join(__dirname, 'public'),{
+app.use(express.static(path.join(__dirname, 'public'), {
   options: {
     maxAge: 3600000,
   },
@@ -97,11 +97,11 @@ app.use(express.static(path.join(__dirname, 'public'),{
 app.use('/creative/health', (req, res) => res.send('OK'));
 
 // 404
-app.use((req, res, next) => res.status(404).end());
+app.use((req, res) => res.status(404).end());
 
 
 // 500
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   console.error('-------------------');
   console.error(err);
   console.error('-------------------');

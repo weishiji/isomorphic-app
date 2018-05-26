@@ -2,8 +2,7 @@
  * 前端的总入口文件
  */
 
-//兼容性
-import 'babel-polyfill';
+// 兼容性
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';

@@ -60,6 +60,9 @@ const commonConfig = merge([
       name: '[name].[hash:8].[ext]',
     },
   }),
+  parts.assets({
+    path: PATHS.build,
+  }),
   parts.happyPackThread('js', ['babel-loader']),
   parts.happyPackThread('jsx', ['babel-loader']),
 ]);

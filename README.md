@@ -46,3 +46,42 @@
     },
   },
 ```
+- 为了让```PropTypes```组件在```eslint```的检测中```object```不报错，我们需要在配置文件中加入一条规则
+```JSON
+.eslintrc.js
+"rules": {
+    "comma-dangle": 0,
+    "function-paren-newline": ["error", "consistent"],
+    "class-methods-use-this": "off",
+    "no-nested-ternary": "off",
+    "no-confusing-arrow": "off",
+    "react/forbid-prop-types": "on", /* 禁止object检测报错 */
+  },
+```
+
+- nodejs支持动态```import```,我们需要安装很多babel组件
+```javascript
+npm i babel-plugin-import-inspector -D
+npm i babel-plugin-module-resolver -D
+npm i babel-plugin-syntax-class-properties -D
+npn i babel-plugin-syntax-object-rest-spread -D
+npm i babel-plugin-system-import-transformer -D
+npm i babel-plugin-transform-async-to-generator -D
+npm i babel-plugin-transform-class-properties -D
+npm i babel-plugin-transform-object-rest-spread -D
+npm i import-inspector -D
+```
+新增的```.babelrc```的配置为
+```JSON
+"babel-plugin-syntax-class-properties",
+     "babel-plugin-transform-class-properties",
+     "babel-plugin-syntax-object-rest-spread",
+     "babel-plugin-transform-object-rest-spread",
+     "babel-plugin-transform-async-to-generator",
+     ["import-inspector", {
+       "serverSideRequirePath": true,
+       "webpackRequireWeakId" : true
+     }],
+     ["system-import-transformer", { "commonJS": { "useRequireEnsure": true} }],
+     "react-loadable/babel",
+```
