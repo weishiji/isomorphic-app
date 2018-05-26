@@ -30,7 +30,7 @@ let store;
 if (!(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__)) {
   store = createStore(
     rootReducer,
-    preloadedState,
+    // preloadedState,
     applyMiddleware(
       routeMiddleware,
       thunkMiddleware,
@@ -39,7 +39,7 @@ if (!(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__
 } else {
   store = createStore(
     rootReducer,
-    preloadedState,
+    // preloadedState,
     compose(
       applyMiddleware(
         routeMiddleware,
