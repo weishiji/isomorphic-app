@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux-immutable';
 
-const test = () => {};
+const test = () => ({
+  type: 'TEST',
+});
 
 const entities = combineReducers({
   test,

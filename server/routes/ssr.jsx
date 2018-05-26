@@ -30,7 +30,7 @@ const jsBunles =
   fs.existsSync(path.join(__dirname, '../public/react-loadable.json')) ?
     require('public/webpack-assets.json') :
     {
-      vendor: {
+      vendors: {
         js: 'vendor.js',
       },
       runtime: {
@@ -41,8 +41,22 @@ const jsBunles =
       },
     };
 
+// 从前端路有配置中读取所有的routes的path，匹配到后端路由中去
+const routesPath = [];
+const getPath = (_routes) => {
+  _routes.map((route) => {
+    if (route.path) {
+      routesPath.push(route.path);
+    }
+    if (route.routes) {
+      getPath(route.routes);
+    }
+  });
+};
 
-router.get('*', (req, res, next) => {
+getPath(routes);
+
+router.get(routesPath, (req, res, next) => {
   const { path, url, query, params } = req;
   const store = createStore(reducers, applyMiddleware(thunk));
 
@@ -73,24 +87,26 @@ router.get('*', (req, res, next) => {
   //}
 
   return Promise.all(promises).then(() => {
-    let context = {};
-    let modules = [];
-    const html = renderToString(
-      <JssProvider registry={sheetsRegistry} jss={jss}>
-        <MuiThemeProvider theme={createMuiTheme(theme)} sheetsManager={new Map()}>
-          <Provider store={store}>
-            <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-              <StaticRouter location={req.url} context={context}>
-                {renderRoutes(routes)}
-              </StaticRouter>
-            </Loadable.Capture>
-          </Provider>
-        </MuiThemeProvider>
-      </JssProvider>
-    );
+    const context = {};
+    const modules = [];
+    const html = 'hello world';
+    // const html = renderToString(
+    //   <JssProvider registry={sheetsRegistry} jss={jss}>
+    //     <MuiThemeProvider theme={createMuiTheme(theme)} sheetsManager={new Map()}>
+    //       <Provider store={store}>
+    //         <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+    //           <StaticRouter location={req.url} context={context}>
+    //             {renderRoutes(routes.routes)}
+    //           </StaticRouter>
+    //         </Loadable.Capture>
+    //       </Provider>
+    //     </MuiThemeProvider>
+    //   </JssProvider>
+    // );
+
+    console.log(html, 'this is');
 
     const bundles = getBundles(stats, modules).map(bundle => bundle.file);
-
     if (context.status === 404) {
       res.status(404);
     }
@@ -99,14 +115,15 @@ router.get('*', (req, res, next) => {
     }
     // TODO:禁止服务端渲染
     res.render('index', {
-      html: process.env.NODE_ENV === 'production' ? html : '',
+      // html: process.env.NODE_ENV === 'production' ? html : '',
+      html,
       _async_fetch,
       preloadedState: JSON.stringify(store.getState())
         .replace(/</g, '\\u003c')
         .replace(/\u2028/g, '\\u2028')
         .replace(/\u2029/g, '\\u2029'),
       css: sheetsRegistry.toString(),
-      bundles: [jsBunles.vendor.js, jsBunles.lib.js, jsBunles.client.js, ...bundles],
+      bundles: [jsBunles.vendors.js, jsBunles.runtime.js, jsBunles.client.js, ...bundles],
       userId,
     });
   });

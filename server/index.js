@@ -109,44 +109,41 @@ app.use((err, req, res) => {
   res.status(500).json(err);
 });
 // 504
-app.use((err, req, res, next) => res.status(504).json(err));
+app.use((err, req, res) => res.status(504).json(err));
 
 
-//子进程监听消息处理函数
-var workerListener = function (msg) {
-  if (msg.access)
-    console.log('user access %s, worker [%d]',msg.access, msg.workerid);
+// 子进程监听消息处理函数
+const workerListener = (msg) => {
+  if (msg.access) console.log('user access %s, worker [%d]', msg.access, msg.workerid);
 };
-//fork新的子进程函数
-var forkWorker = function (listener) {
-  var worker = cluster.fork();
-  console.log('worker [%d] has been created',worker.process.pid);
+// fork新的子进程函数
+const forkWorker = (listener) => {
+  const worker = cluster.fork();
+  console.log('worker [%d] has been created', worker.process.pid);
   worker.on('message', listener);
   return worker;
 };
 
 // Cluster处理
 if (cluster.isMaster) {
-  for (var i = 0; i < cpus / 2; i++) {
+  for (let i = 0; i < cpus / 2; i += 1) {
     forkWorker(workerListener);
   }
 } else {
   // 通过LoadAble预加载code split 组建后再启动服务
   Loadable.preloadAll().then(() => {
-    let port = process.env.PORT || 3000;
+    const port = process.env.PORT || 3000;
     app.listen(port, () => {
       console.log(`Express server started on port:${port} and env:${process.env.NODE_ENV}`);
     });
-  }).catch(e => {
-    console.log(e, 'start server error');
-  });
+  }).catch(e => console.log(e, 'start server error'));
 }
-//Cluster收到子进程退出消息
-cluster.on('exit', function (worker, code, signal) {
-  console.log('worker [%d] died %s, fork a new one.',worker.process.pid, code || signal);
+// Cluster收到子进程退出消息
+cluster.on('exit', (worker, code, signal) => {
+  console.log('worker [%d] died %s, fork a new one.', worker.process.pid, code || signal);
   forkWorker(workerListener);
 });
-//Cluster收到子进程运行消息
-cluster.on('online', function(worker){
+// Cluster收到子进程运行消息
+cluster.on('online', (worker) => {
   console.log('worker [%d] is running.', worker.process.pid);
 });
