@@ -1,7 +1,7 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
-import Immutable from 'immutable';
+import { fromJS } from 'immutable';
 import Loadable from 'react-loadable';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
@@ -30,7 +30,7 @@ let store;
 if (!(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__)) {
   store = createStore(
     rootReducer,
-    // preloadedState,
+    fromJS(preloadedState),
     applyMiddleware(
       routeMiddleware,
       thunkMiddleware,
@@ -39,7 +39,7 @@ if (!(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__
 } else {
   store = createStore(
     rootReducer,
-    // preloadedState,
+    fromJS(preloadedState),
     compose(
       applyMiddleware(
         routeMiddleware,
