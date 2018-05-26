@@ -89,20 +89,20 @@ router.get(routesPath, (req, res, next) => {
   return Promise.all(promises).then(() => {
     const context = {};
     const modules = [];
-    const html = 'hello world';
-    // const html = renderToString(
-    //   <JssProvider registry={sheetsRegistry} jss={jss}>
-    //     <MuiThemeProvider theme={createMuiTheme(theme)} sheetsManager={new Map()}>
-    //       <Provider store={store}>
-    //         <Loadable.Capture report={moduleName => modules.push(moduleName)}>
-    //           <StaticRouter location={req.url} context={context}>
-    //             {renderRoutes(routes.routes)}
-    //           </StaticRouter>
-    //         </Loadable.Capture>
-    //       </Provider>
-    //     </MuiThemeProvider>
-    //   </JssProvider>
-    // );
+    // const html = 'hello world';
+    const html = renderToString(
+      <JssProvider registry={sheetsRegistry} jss={jss}>
+        <MuiThemeProvider theme={createMuiTheme(theme)} sheetsManager={new Map()}>
+          <Provider store={store}>
+            <Loadable.Capture report={moduleName => modules.push(moduleName)}>
+              <StaticRouter location={req.url} context={context}>
+                {renderRoutes(routes)}
+              </StaticRouter>
+            </Loadable.Capture>
+          </Provider>
+        </MuiThemeProvider>
+      </JssProvider>
+    );
 
     console.log(html, 'this is');
 

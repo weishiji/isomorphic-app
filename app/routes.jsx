@@ -6,7 +6,7 @@ import pageRoot from './pages/index';
 
 const loading = props => props.error ? (<div>PreLoad Javascirpt Error</div>) : null;
 loading.propTypes = {
-  error: PropTypes.any.isRequired,
+  error: PropTypes.any,
 };
 // https://github.com/webpack/webpack/issues/3496
 // https://github.com/hpherzog/require-ensure-shim
@@ -16,12 +16,12 @@ if (typeof (require.ensure) !== 'function') {
   };
 }
 
-// const Home = Loadable({
-//   loader : () => import( /* webpackChunkName: 'home' */ './pages/Home'),
-//   loading,
-// });
+const Home = Loadable({
+  loader : () => import( /* webpackChunkName: 'home' */ './pages/Home'),
+  loading,
+});
 
-const Home = () => <div>hello</div>;
+// const Home = () => <div>hello world</div>;
 
 const routes = [
   {
@@ -29,6 +29,11 @@ const routes = [
     routes: [
       {
         path: '/',
+        exact: true,
+        component: Home,
+      },
+      {
+        path: '/home',
         exact: true,
         component: Home,
       },

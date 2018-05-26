@@ -13,8 +13,6 @@ const Home = () =>
 Home.propTypes = {
   // style
   classes: PropTypes.object.isRequired,
-  // state
-  theme: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
