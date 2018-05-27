@@ -1,8 +1,18 @@
 # isomorphic-app
+项目启动
+--------
+将```.env.exmaple```复制并重命名为```.env```,是项目运行中的环境变量。
+```env
+HOST=http://localhost
+PORT=3000
+API_PORT=80
+NODE_ENV=development
+BLUEBIRD_DEBUG=0
+```
 ``package.json``安装原则
 ---------
 - 开发中用到的组件命令是 ```npm i ${name} --save-dev``` 
-- 实际代码中用到的组件安装命令是```npm i ${name} -S```
+- 实际代码中用到的组件安装命令是```npm i ${name} -S```
 
 ```eslint```语法检测安装
 ------------
@@ -17,7 +27,7 @@
 - ``` npm install babel-preset-react -D```
 - ```npm install --save-dev babel-preset-es2015``` 可以让nodejs支持jsx文件
 
-服务端```import``` app 文件夹下的文件，需要解决路径的问题，同构app的情况下路径解决需要用到的组件为```babel-plugin-module-resolver```，但是由于我们使用了eslint语法检测工具，为防止vscode找不到alias的路径，我们继续需要引入eslint的一些插件解决此问题
+服务端```import``` app 文件夹下的文件，需要解决路径的问题，同构app的情况下路径解决需要用到的组件为```babel-plugin-module-resolver```，但是由于我们使用了eslint语法检测工具，为防止vscode找不到alias的路径，我们继续需要引入eslint的一些插件解决此问题
 - ``` npm install babel-plugin-module-resolver -D```
 ```JSON
 .babelrc
