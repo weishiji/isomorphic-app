@@ -89,7 +89,6 @@ router.get(routesPath, (req, res, next) => {
   return Promise.all(promises).then(() => {
     const context = {};
     const modules = [];
-    // const html = 'hello world';
     const html = renderToString(
       <JssProvider registry={sheetsRegistry} jss={jss}>
         <MuiThemeProvider theme={createMuiTheme(theme)} sheetsManager={new Map()}>
@@ -113,8 +112,7 @@ router.get(routesPath, (req, res, next) => {
     }
     // TODO:禁止服务端渲染
     res.render('index', {
-      // html: process.env.NODE_ENV === 'production' ? html : '',
-      html,
+      html: process.env.NODE_ENV === 'production' ? html : '',
       _async_fetch,
       preloadedState: JSON.stringify(store.getState())
         .replace(/</g, '\\u003c')
