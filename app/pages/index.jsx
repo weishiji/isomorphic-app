@@ -10,7 +10,7 @@ import theme from 'theme';
 
 const styles = {
   '@global': {
-    'html, body, #app': {
+    'html, body, #root': {
       height: '100%',
       minHeight: '100%',
     },

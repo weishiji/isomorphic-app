@@ -104,8 +104,6 @@ router.get(routesPath, (req, res, next) => {
       </JssProvider>
     );
 
-    console.log(html, 'this is');
-
     const bundles = getBundles(stats, modules).map(bundle => bundle.file);
     if (context.status === 404) {
       res.status(404);

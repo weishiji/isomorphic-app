@@ -21,8 +21,6 @@ const Home = Loadable({
   loading,
 });
 
-// const Home = () => <div>hello world</div>;
-
 const routes = [
   {
     component: pageRoot,

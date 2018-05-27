@@ -20,12 +20,12 @@ import routes from 'app/routes';
 const history = createHistory();
 const routeMiddleware = routerMiddleware(history);
 
-const preloadedState = window.__PRELOADED_STATE__;
+const preloadedState = global.__PRELOADED_STATE__;
 
-delete window.__PRELOADED_STATE__;
+delete global.__PRELOADED_STATE__;
 
 let store;
-if (!(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__)) {
+if (!(global.__REDUX_DEVTOOLS_EXTENSION__ || global.__REDUX_DEVTOOLS_EXTENSION__)) {
   store = createStore(
     rootReducer,
     fromJS(preloadedState),
@@ -42,7 +42,7 @@ if (!(window.__REDUX_DEVTOOLS_EXTENSION__ || window.__REDUX_DEVTOOLS_EXTENSION__
       applyMiddleware(
         routeMiddleware,
         thunkMiddleware,
-      ), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+      ), global.__REDUX_DEVTOOLS_EXTENSION__ && global.__REDUX_DEVTOOLS_EXTENSION__()
     )
   );
 }
@@ -58,12 +58,12 @@ const App = () => (
   </MuiThemeProvider>
 );
 
-window.main = () => {
+global.main = () => {
   Loadable.preloadReady().then(() => {
     hydrate(<App />, global.document.getElementById('root'), () => {
       const ssStyles = global.document.getElementById('jss-server-side');
       ssStyles.parentNode.removeChild(ssStyles);
     });
-    window._ASYNC_FETCH = true;
+    global._ASYNC_FETCH = true;
   });
 };

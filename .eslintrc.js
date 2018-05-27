@@ -7,6 +7,7 @@ module.exports = {
     "no-nested-ternary": "off",
     "no-confusing-arrow": "off",
     "react/forbid-prop-types": "on",
+    "no-underscore-dangle": "off" ,
   },
   "settings": {
     "import/resolver": {
