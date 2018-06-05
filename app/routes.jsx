@@ -20,6 +20,10 @@ const Home = Loadable({
   loader : () => import( /* webpackChunkName: 'home' */ './pages/Home'),
   loading,
 });
+const Profile = Loadable({
+  loader : () => import('./pages/Profile'),
+  loading,
+});
 
 const routes = [
   {
@@ -34,6 +38,11 @@ const routes = [
         path: '/home',
         exact: true,
         component: Home,
+      },
+      {
+        path: '/profile',
+        exact: true,
+        component: Profile,
       },
     ],
   },

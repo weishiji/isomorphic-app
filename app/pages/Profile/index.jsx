@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-const Home = (props) => {
+const Profile = (props) => {
   const { classes } = props;
   return (
     <Container scroll>
@@ -42,13 +42,13 @@ const Home = (props) => {
         <Typography>
           <Link to="/profile">profile</Link>
         </Typography>
-        <Typography variant="display1">这是首页</Typography>
+        <Typography variant="display1">这是个人主页</Typography>
       </Container>
     </Container>
   );
 };
 
-Home.propTypes = {
+Profile.propTypes = {
   // style
   classes: PropTypes.object.isRequired,
 };
@@ -62,4 +62,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(Home));
+)(withStyles(styles)(Profile));

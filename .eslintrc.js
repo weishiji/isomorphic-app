@@ -8,6 +8,7 @@ module.exports = {
     "no-confusing-arrow": "off",
     "react/forbid-prop-types": "on",
     "no-underscore-dangle": "off" ,
+    "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ] } ],
   },
   "settings": {
     "import/resolver": {

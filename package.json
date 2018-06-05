@@ -45,6 +45,7 @@
     "pug": "^2.0.3",
     "qs": "^6.5.2",
     "react": "^16.4.0",
+    "react-custom-scrollbars": "^4.2.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.4.0",
     "react-jss": "^8.4.0",
