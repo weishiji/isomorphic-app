@@ -66,7 +66,7 @@ BLUEBIRD_DEBUG=0
     "class-methods-use-this": "off",
     "no-nested-ternary": "off",
     "no-confusing-arrow": "off",
-    "react/forbid-prop-types": "on", /* 禁止object检测报错 */
+    "react/forbid-prop-types": "on", // 禁止object检测报错
   },
 ```
 
@@ -85,14 +85,21 @@ npm i import-inspector -D
 新增的```.babelrc```的配置为
 ```JSON
 "babel-plugin-syntax-class-properties",
-     "babel-plugin-transform-class-properties",
-     "babel-plugin-syntax-object-rest-spread",
-     "babel-plugin-transform-object-rest-spread",
-     "babel-plugin-transform-async-to-generator",
-     ["import-inspector", {
-       "serverSideRequirePath": true,
-       "webpackRequireWeakId" : true
-     }],
-     ["system-import-transformer", { "commonJS": { "useRequireEnsure": true} }],
-     "react-loadable/babel",
+"babel-plugin-transform-class-properties",
+"babel-plugin-syntax-object-rest-spread",
+"babel-plugin-transform-object-rest-spread",
+"babel-plugin-transform-async-to-generator",
+["import-inspector", {
+  "serverSideRequirePath": true,
+  "webpackRequireWeakId" : true
+}],
+["system-import-transformer", { "commonJS": { "useRequireEnsure": true} }],
+"react-loadable/babel",
 ```
+启动项目
+--------------------
+```command
+npm run client:dev  // 启动前端编译
+npm run server:dev  // 启动服务端
+```
+
