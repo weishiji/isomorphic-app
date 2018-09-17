@@ -106,4 +106,12 @@ npm i import-inspector -D
 npm run client:dev  // 启动前端编译
 npm run server:dev  // 启动服务端
 ```
+生产环境使用
+------------------
+```command
+npm run client-dep // 将前端代码按照生产环境编译
+npm run build-app // 同构app中 server端代码依赖于app的代码进行编译
+npm run build-server // 将server端代码编译
+npm run serve // 启动server 后期可该用pm2-runtime 监控
+```
 
