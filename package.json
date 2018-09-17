@@ -4,6 +4,11 @@
   "description": "",
   "main": ".eslintrc.spellcheck.js",
   "scripts": {
+    "build-app": "babel app -d dist/app --presets env,react,stage-0",
+    "build-server": "babel server -d dist/server --copy-files --presets env,react,stage-0",
+    "client-dep": "webpack -p --progress --colors --env=production",
+    "serve": "node node dist/server/index.js",
+
     "client:dev": "webpack -w --progress --colors",
     "server:dev": "nodemon server --watch app --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
