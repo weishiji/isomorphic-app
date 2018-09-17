@@ -42,7 +42,7 @@ const Profile = (props) => {
         <Typography>
           <Link to="/profile">profile</Link>
         </Typography>
-        <Typography variant="display1">这是个人主页</Typography>
+        <Typography variant="display1">这是Profile</Typography>
       </Container>
     </Container>
   );
