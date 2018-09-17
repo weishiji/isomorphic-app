@@ -1,7 +1,7 @@
 # isomorphic-app
-项目描述
+项目描述
 ----------
-单页面程序由前端
+单页面程序由前端
 
 项目启动
 --------
@@ -70,7 +70,7 @@ BLUEBIRD_DEBUG=0
     "class-methods-use-this": "off",
     "no-nested-ternary": "off",
     "no-confusing-arrow": "off",
-    "react/forbid-prop-types": "on", // 禁止object检测报错
+    "react/forbid-prop-types": "on", // 禁止object检测报错
   },
 ```
 
@@ -103,7 +103,7 @@ npm i import-inspector -D
 启动项目
 --------------------
 ```command
-npm run client:dev  // 启动前端编译
+npm run client:dev  // 启动前端编译
 npm run server:dev  // 启动服务端
 ```
 
