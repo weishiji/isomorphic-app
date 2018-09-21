@@ -8,7 +8,6 @@
     "build-server": "babel server -d dist/server --copy-files --presets env,react,stage-0",
     "client-dep": "webpack -p --progress --colors --env=production",
     "serve": "node dist/server/index.js",
-
     "client:dev": "webpack -w --progress --colors",
     "server:dev": "nodemon server --watch app --exec babel-node",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -53,7 +52,7 @@
     "react-custom-scrollbars": "^4.2.1",
     "react-document-title": "^2.0.3",
     "react-dom": "^16.4.0",
-    "react-jss": "^8.4.0",
+    "react-jss": "^8.6.1",
     "react-loadable": "^5.4.0",
     "react-redux": "^5.0.7",
     "react-router-config": "^1.0.0-beta.4",

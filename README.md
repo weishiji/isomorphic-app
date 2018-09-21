@@ -62,7 +62,7 @@ BLUEBIRD_DEBUG=0
   },
 ```
 - 为了让```PropTypes```组件在```eslint```的检测中```object```不报错，我们需要在配置文件中加入一条规则
-```JSON
+```javascript
 .eslintrc.js
 "rules": {
     "comma-dangle": 0,
