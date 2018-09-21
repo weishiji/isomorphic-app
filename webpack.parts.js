@@ -166,3 +166,18 @@ exports.assets = ({ filename, path, fullPath = false }) => ({
     }),
   ],
 });
+
+exports.cssLoader = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'to-string-loader',
+          'css-loader',
+          // 'style-loader',
+        ],
+      },
+    ],
+  },
+});

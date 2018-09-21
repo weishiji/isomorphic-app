@@ -65,6 +65,7 @@ const commonConfig = merge([
   }),
   parts.happyPackThread('js', ['babel-loader']),
   parts.happyPackThread('jsx', ['babel-loader']),
+  parts.cssLoader(),
 ]);
 
 const productionConfig = merge([
