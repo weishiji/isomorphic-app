@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
+import { Helmet } from 'react-helmet';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -25,6 +26,9 @@ const Home = (props) => {
   const { classes } = props;
   return (
     <Container scroll>
+      <Helmet>
+        <title>首页</title>
+      </Helmet>
       <AppBar position="static">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">

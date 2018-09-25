@@ -1,21 +1,22 @@
 doctype html
 html.no-js(lang='zh-CN')
-  head
+  head !{helmet}
     meta(charset='utf-8')
     <base href="/">
     meta(http-equiv='x-ua-compatible', content='ie=edge')
-    title SSR DEMO
     link(rel="icon name", href="")
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     style#jss-server-side.
       !{css}
-    #root !{html}
-    script.
-      window._ASYNC_FETCH = !{_async_fetch}; //是否为刷新页面加载
-      window.__PRELOADED_STATE__ = !{preloadedState}
-    each src in bundles 
-      script(src=`\/${src}`)
-    script.
-      window.main();
+
+    body
+      #root !{html}
+      script.
+        window._ASYNC_FETCH = !{_async_fetch}; //是否为刷新页面加载
+        window.__PRELOADED_STATE__ = !{preloadedState}
+      each src in bundles 
+        script(src=`\/${src}`)
+      script.
+        window.main();
 

@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import express from 'express';
 import React from 'react';
+import { fromJS } from 'immutable';
+import { Helmet } from 'react-helmet';
 import { renderToString } from 'react-dom/server';
 import pathToRegexp from 'path-to-regexp';
 
@@ -103,6 +105,12 @@ router.get(routesPath, (req, res, next) => {
       </JssProvider>
     );
 
+    const helmet = fromJS(Helmet.renderStatic())
+      .map(item => item.toJS().toString())
+      .valueSeq().filter(item => !!item)
+      .toArray()
+      .join('');
+
     const bundles = getBundles(stats, modules).map(bundle => bundle.file);
     if (context.status === 404) {
       res.status(404);
@@ -114,6 +122,7 @@ router.get(routesPath, (req, res, next) => {
     res.render('index', {
       html: process.env.NODE_ENV === 'production' ? html : '',
       _async_fetch,
+      helmet,
       preloadedState: JSON.stringify(store.getState())
         .replace(/</g, '\\u003c')
         .replace(/\u2028/g, '\\u2028')

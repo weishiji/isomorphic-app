@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import { withStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -20,33 +21,53 @@ const styles = {
   },
 };
 
-const Profile = (props) => {
-  const { classes } = props;
-  return (
-    <Container scroll>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="title" color="inherit" className={classes.flex}>
-            Title
+class Profile extends React.Component {
+  state = {
+    count: 0,
+  }
+
+  componentDidMount() {
+    global.setInterval(() => {
+      this.setState({
+        count: this.state.count += 1,
+      });
+    }, 1000);
+  }
+
+  render() {
+    const {
+      classes,
+    } = this.props;
+
+    return (
+      <Container scroll>
+        <Helmet>
+          <title>{`${this.state.count} 个人主页`}</title>
+        </Helmet>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="title" color="inherit" className={classes.flex}>
+              Title
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+        <Container padding={8}>
+          <Typography>
+            <Link to="/">首页</Link>
           </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <Container padding={8}>
-        <Typography>
-          <Link to="/">首页</Link>
-        </Typography>
-        <Typography>
-          <Link to="/profile">profile</Link>
-        </Typography>
-        <Typography variant="display1">这是Profile</Typography>
+          <Typography>
+            <Link to="/profile">profile</Link>
+          </Typography>
+          <Typography variant="display1">这是Profile</Typography>
+        </Container>
       </Container>
-    </Container>
-  );
-};
+    );
+  }
+}
 
 Profile.propTypes = {
   // style

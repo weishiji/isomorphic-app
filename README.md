@@ -100,12 +100,28 @@ npm i import-inspector -D
 ["system-import-transformer", { "commonJS": { "useRequireEnsure": true} }],
 "react-loadable/babel",
 ```
+服务端渲染<head>标签的seo方案
+---------------
+```
+npm install react-helmet --save
+ssr.js
+const helmet = fromJS(Helmet.renderStatic())
+  .map(item => item.toJS().toString())
+  .valueSeq().filter(item => !!item)
+  .toArray()
+  .join('');
+res.render('index', {
+  helmet,
+  ...
+});
+```
 启动项目
 --------------------
 ```command
 npm run client:dev  // 启动前端编译
 npm run server:dev  // 启动服务端
 ```
+
 生产环境使用
 ------------------
 ```command
