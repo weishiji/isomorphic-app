@@ -118,6 +118,7 @@ res.render('index', {
 启动项目
 --------------------
 ```command
+npm i                // 安装依赖
 npm run client:dev  // 启动前端编译
 npm run server:dev  // 启动服务端
 ```
