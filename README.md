@@ -34,7 +34,7 @@ BLUEBIRD_DEBUG=0
 服务端```import``` app 文件夹下的文件，需要解决路径的问题，同构app的情况下路径解决需要用到的组件为```babel-plugin-module-resolver```，但是由于我们使用了eslint语法检测工具，为防止vscode找不到alias的路径，我们继续需要引入eslint的一些插件解决此问题
 - ``` npm install babel-plugin-module-resolver -D```
 ```JSON
-.babelrc
+// .babelrc
 "plugins": [
     ["module-resolver", {
       "root": ["./app"],
@@ -54,7 +54,7 @@ BLUEBIRD_DEBUG=0
 ```
 - ``` npm install eslint-plugin-import eslint-import-resolver-babel-module -D```
 ```JSON
-.eslintrc.js
+// .eslintrc.js
 "settings": {
     "import/resolver": {
       "babel-module": {},
@@ -63,7 +63,7 @@ BLUEBIRD_DEBUG=0
 ```
 - 为了让```PropTypes```组件在```eslint```的检测中```object```不报错，我们需要在配置文件中加入一条规则
 ```javascript
-.eslintrc.js
+// .eslintrc.js
 "rules": {
     "comma-dangle": 0,
     "function-paren-newline": ["error", "consistent"],
@@ -86,6 +86,7 @@ npm i babel-plugin-transform-class-properties -D
 npm i babel-plugin-transform-object-rest-spread -D
 npm i import-inspector -D
 ```
+
 新增的```.babelrc```的配置为
 ```JSON
 "babel-plugin-syntax-class-properties",
@@ -100,11 +101,14 @@ npm i import-inspector -D
 ["system-import-transformer", { "commonJS": { "useRequireEnsure": true} }],
 "react-loadable/babel",
 ```
-服务端渲染<head>标签的seo方案
+服务端渲染 head 标签的seo方案
 ---------------
-```
+```javascript
 npm install react-helmet --save
-ssr.js
+```
+
+```javascript
+// ssr.js
 const helmet = fromJS(Helmet.renderStatic())
   .map(item => item.toJS().toString())
   .valueSeq().filter(item => !!item)
@@ -117,7 +121,7 @@ res.render('index', {
 ```
 启动项目
 --------------------
-```command
+```javascript
 npm i                // 安装依赖
 npm run client:dev  // 启动前端编译
 npm run server:dev  // 启动服务端
@@ -125,7 +129,7 @@ npm run server:dev  // 启动服务端
 
 生产环境使用
 ------------------
-```command
+```javascript
 npm run client-dep // 将前端代码按照生产环境编译
 npm run build-app // 同构app中 server端代码依赖于app的代码进行编译
 npm run build-server // 将server端代码编译

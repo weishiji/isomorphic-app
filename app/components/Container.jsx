@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { Helmet } from 'react-helmet';
 
 import PerfectScrollbar from 'perfect-scrollbar';
 // import scrollbarStyle from 'perfect-scrollbar/css/perfect-scrollbar.css';
@@ -164,12 +163,6 @@ class Container extends React.Component {
     } = this.props;
     return (
       <div ref={(node) => { this.box = node; }}>
-        {/* <Helmet>
-          <style>
-            {scrollbarStyle}
-          </style>
-        </Helmet> */}
-
         {children}
       </div>
     );
