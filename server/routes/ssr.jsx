@@ -24,7 +24,10 @@ import reducers from 'reducers';
 
 import stats from 'public/react-loadable.json';
 
-import { Countdown as CountdownAction } from 'actions';
+import {
+  Countdown as CountdownAction,
+  User as UserAction,
+} from 'actions';
 
 const router = express.Router();
 
@@ -53,6 +56,7 @@ const getPath = (_routes) => {
     if (route.routes) {
       getPath(route.routes);
     }
+    return null;
   });
 };
 
@@ -77,16 +81,16 @@ router.get(routesPath, (req, res, next) => {
 
   let userId = 0;
   // user session store
-  // if (req.session && req.session.user) {
-  //   store.dispatch(UserAction.signinSuccess(req.session.user));
-  //   userId = store.getState().user.data.userId;
-  // }
+  if (req.session && req.session.user) {
+    store.dispatch(UserAction.load(req.session.user));
+    // userId = store.getState().user.data.userId;
+  }
   let _async_fetch = true;
 
-  //if(path.match(pathToRegexp('/editorial/channel/:type(\\w+-\\d+-\\d+)'))){
-  //  _async_fetch = false;
-  //  promises.push(store.dispatch(EditorialChannelAction.fetch(params)));
-  //}
+  if (path.match(pathToRegexp('/editorial/channel/:type(\\w+-\\d+-\\d+)'))) {
+    _async_fetch = false;
+    // promises.push(store.dispatch(EditorialChannelAction.fetch(params)));
+  }
 
   return Promise.all(promises).then(() => {
     const context = {};

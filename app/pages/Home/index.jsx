@@ -23,9 +23,9 @@ const styles = {
 };
 
 const Home = (props) => {
-  const { classes } = props;
+  const { classes, userInfo } = props;
   return (
-    <Container scroll>
+    <Container>
       <Helmet>
         <title>首页</title>
       </Helmet>
@@ -37,7 +37,9 @@ const Home = (props) => {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Title
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">
+            {userInfo.get('username')}
+          </Button>
         </Toolbar>
       </AppBar>
       <Container padding={8}>
@@ -56,9 +58,12 @@ const Home = (props) => {
 Home.propTypes = {
   // style
   classes: PropTypes.object.isRequired,
+  // data
+  userInfo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
+  userInfo: state.getIn(['entities', 'user', 'info']),
 });
 
 const mapDispatchToProps = {

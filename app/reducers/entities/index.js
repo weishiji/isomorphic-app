@@ -1,11 +1,7 @@
 import { combineReducers } from 'redux-immutable';
 
-const test = () => ({
-  type: 'TEST',
-});
+import user from './user';
 
-const entities = combineReducers({
-  test,
+export default combineReducers({
+  user,
 });
-
-export default entities;
