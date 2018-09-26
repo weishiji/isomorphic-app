@@ -131,6 +131,7 @@ router.get(routesPath, (req, res, next) => {
       bundles: [jsBunles.vendors.js, jsBunles.runtime.js, jsBunles.client.js, ...bundles],
       userId,
     });
+    return null;
   });
 });
 

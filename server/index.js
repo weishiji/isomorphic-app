@@ -17,7 +17,6 @@ const Loadable = require('react-loadable');
 const timeout = require('connect-timeout');
 
 const api = require('./routes/api');
-// import middlewares from './middleware';
 const ssr = require('./routes/ssr');
 const config = require('./config/index');
 // CPU
@@ -43,7 +42,7 @@ app.use(compression());
 // session
 app.use(session({
   store: new RedisStore(config.redis),
-  secret: 'vcg session',
+  secret: 'isomorphic',
   resave: false,
   saveUninitialized: false,
 }));

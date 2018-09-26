@@ -10,6 +10,7 @@ module.exports = {
     "react/forbid-prop-types": "on",
     "no-underscore-dangle": "off" ,
     "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ] } ],
+    "no-param-reassign": ["error", { "props": false }],
   },
   "settings": {
     "import/resolver": {

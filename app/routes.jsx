@@ -11,17 +11,17 @@ loading.propTypes = {
 // https://github.com/webpack/webpack/issues/3496
 // https://github.com/hpherzog/require-ensure-shim
 if (typeof (require.ensure) !== 'function') {
-  require.ensure = function (modules, callback) {
+  require.ensure = (modules, callback) => {
     callback(require);
   };
 }
 
 const Home = Loadable({
-  loader : () => import( /* webpackChunkName: 'home' */ './pages/Home'),
+  loader: () => import('./pages/Home'),
   loading,
 });
 const Profile = Loadable({
-  loader : () => import('./pages/Profile'),
+  loader: () => import('./pages/Profile'),
   loading,
 });
 
