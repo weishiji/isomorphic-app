@@ -1,5 +1,5 @@
 # serser篇
-
+```
 ├── README.md
 ├── config
 ├── controllers
@@ -8,6 +8,7 @@
 ├── public
 ├── routes
 └── views
+```
 
 说明
 -----
