@@ -7,6 +7,8 @@ html.no-js(lang='zh-CN')
     link(rel="icon name", href="")
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
+    each href in styles
+      link(href=`\/${href}`)
     style#jss-server-side.
       !{css}
 
@@ -15,7 +17,7 @@ html.no-js(lang='zh-CN')
       script.
         window._ASYNC_FETCH = !{_async_fetch}; //是否为刷新页面加载
         window.__PRELOADED_STATE__ = !{preloadedState}
-      each src in bundles 
+      each src in scripts 
         script(src=`\/${src}`)
       script.
         window.main();

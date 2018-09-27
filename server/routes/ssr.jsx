@@ -31,12 +31,13 @@ import {
 
 const router = express.Router();
 
-const jsBunles =
+const defaultBunles =
   fs.existsSync(path.join(__dirname, '../public/react-loadable.json')) ?
     require('public/webpack-assets.json') :
     {
       vendors: {
         js: 'vendor.js',
+        css: 'vendor.css',
       },
       runtime: {
         js: 'runtime.js',
@@ -116,7 +117,14 @@ router.get(routesPath, (req, res, next) => {
       .toArray()
       .join('');
 
-    const bundles = getBundles(stats, modules).map(bundle => bundle.file.endsWith('.js'));
+    const bundles = getBundles(stats, modules);
+    const scripts = bundles
+      .filter(bundle => bundle.file.endsWith('.js'))
+      .map(item => item.file);
+    const styles = bundles
+      .filter(bundle => bundle.file.endsWith('.css'))
+      .map(item => item.file);
+
     if (context.status === 404) {
       res.status(404);
     }
@@ -133,7 +141,16 @@ router.get(routesPath, (req, res, next) => {
         .replace(/\u2028/g, '\\u2028')
         .replace(/\u2029/g, '\\u2029'),
       css: sheetsRegistry.toString(),
-      bundles: [jsBunles.vendors.js, jsBunles.runtime.js, jsBunles.client.js, ...bundles],
+      scripts: [
+        defaultBunles.vendors.js,
+        defaultBunles.runtime.js,
+        defaultBunles.client.js,
+        ...scripts
+      ],
+      styles: [
+        defaultBunles.vendors.css,
+        ...styles,
+      ],
       userId,
     });
     return null;
