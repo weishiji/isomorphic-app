@@ -43,7 +43,7 @@ const Home = (props) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit">
-            Title
+            列表
           </Typography>
           <Container flex stretch>
             <Typography

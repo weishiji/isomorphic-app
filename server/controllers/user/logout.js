@@ -1,4 +1,4 @@
-module.exports = (req, res, next) => {
+module.exports = (req, res) => {
   // 模拟异步登录（http || mysql）
   setTimeout(() => {
     req.session.user = '';
