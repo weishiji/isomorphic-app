@@ -11,6 +11,7 @@
     "babel-plugin-syntax-object-rest-spread",
     "babel-plugin-transform-object-rest-spread",
     "babel-plugin-transform-async-to-generator",
+    "react-loadable/babel",
     [
       "import-inspector",
       {
@@ -26,13 +27,6 @@
         }
       }
     ],
-    [
-      "react-css-modules",
-      {
-        "removeImport": true
-      }
-    ],
-    "react-loadable/babel",
     [
       "module-resolver",
       {
