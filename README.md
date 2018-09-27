@@ -32,16 +32,18 @@ npm install babel-plugin-module-resolver -D
 npm install babel-preset-react -D
 // 可以让nodejs支持jsx文件
 npm install babel-preset-es2015 -D  
-// 前端项目引入css文件后，后端无法解析css语法，需要忽略
-npm install babel-plugin-react-css-modules -D
-// .babelrc
-{
-  "plugins": [
-    ["react-css-modules", {
-      "removeImport": true ,
-    }]
-  ]
-}
+```
+
+css解决方案
+--------------
+```javascript
+npm i react-jss -S // 大部分css是通过jss这种方式去实现
+/* 为了能够引入第三方css的样式,app端会使用 ```import``` 这种方式引入css文件，但是服务端无法解析css module,
+  因为我们用了一个很小众的插件,让服务端忽略css文件
+ */
+npm install --save ignore-styles
+// server/index.js 引入此组建
+import 'ignore-styles';
 ```
 
 服务端```import``` app 文件夹下的文件，需要解决路径的问题，同构app的情况下路径解决需要用到的组件为```babel-plugin-module-resolver```，但是由于我们使用了eslint语法检测工具，为防止vscode找不到alias的路径，我们继续需要引入eslint的一些插件解决此问题
