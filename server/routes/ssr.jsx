@@ -131,6 +131,7 @@ router.get(routesPath, (req, res, next) => {
     if (context.status === 302) {
       return res.redirect(302, context.url);
     }
+
     // TODO:禁止服务端渲染
     res.render('index', {
       html: process.env.NODE_ENV === 'production' ? html : '',

@@ -4,8 +4,8 @@ module.exports = (req, res, next) => {
   // 模拟异步登录（http || mysql）
   setTimeout(() => {
     const userInfo = {
-      username: 'hello world',
-      userId: 0,
+      username: 'Admin',
+      userId: 1,
     };
     req.session.user = userInfo;
     res.json(userInfo);

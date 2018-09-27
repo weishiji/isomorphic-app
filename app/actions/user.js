@@ -11,7 +11,7 @@ const LOAD_USERINFO_FAIL = `${prefix}.LOAD_USERINFO_FAIL`;
 const load = user => (dispatch) => {
   if (user) {
     return dispatch({
-      payload: user,
+      payload: fromJS(user),
       type: LOAD_USERINFO_SUCCESS,
     });
   }
@@ -30,8 +30,27 @@ const load = user => (dispatch) => {
     }));
 };
 
+const logout = () => (dispatch) => {
+  return network.del(`${config.api}/user`)
+    .then(() => dispatch({
+      payload: fromJS({}),
+      type: LOAD_USERINFO_SUCCESS,
+    }));
+};
+
+const login = () => (dispatch) => {
+  return network.post(`${config.api}/user`)
+    .then(fromJS)
+    .then(result => dispatch({
+      payload: result,
+      type: LOAD_USERINFO_SUCCESS,
+    }));
+};
+
 export default {
   LOAD_USERINFO_REQUEST,
   LOAD_USERINFO_SUCCESS,
   load,
+  logout,
+  login,
 };

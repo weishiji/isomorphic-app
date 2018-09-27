@@ -14,6 +14,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import Container from 'components/Container';
 
+import { User as UserAction } from 'actions';
+
 
 const styles = {
   menuButton: {
@@ -23,8 +25,13 @@ const styles = {
 };
 
 const Home = (props) => {
-  const { classes, userInfo } = props;
-  console.log(userInfo, 'sss');
+  const {
+    classes,
+    userInfo,
+    login,
+    logout,
+  } = props;
+
   return (
     <Container>
       <Helmet>
@@ -35,12 +42,34 @@ const Home = (props) => {
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="title" color="inherit" className={classes.flex}>
+          <Typography variant="title" color="inherit">
             Title
           </Typography>
-          <Button color="inherit">
-            {userInfo && userInfo.get('username')}
-          </Button>
+          <Container flex stretch>
+            <Typography
+              variant="title"
+              color="inherit"
+              align="center"
+              style={{ flex: 1 }}
+            >
+              Welcome {userInfo.get('username')}
+            </Typography>
+          </Container>
+          {userInfo.get('userId') ?
+            <Button
+              color="inherit"
+              onClick={logout}
+            >
+              登出
+            </Button> :
+            <Button
+              color="inherit"
+              onClick={login}
+            >
+              登录
+            </Button>
+          }
+
         </Toolbar>
       </AppBar>
       <Container padding={8}>
@@ -61,6 +90,9 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
   // data
   userInfo: PropTypes.object.isRequired,
+  // action
+  login: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -68,6 +100,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
+  login: UserAction.login,
+  logout: UserAction.logout,
 };
 
 export default connect(
