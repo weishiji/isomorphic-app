@@ -8,7 +8,7 @@ html.no-js(lang='zh-CN')
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     each href in styles
-      link(href=`\/${href}`)
+      link(href=`\/${href}`,rel="stylesheet", type="text/css")
     style#jss-server-side.
       !{css}
 

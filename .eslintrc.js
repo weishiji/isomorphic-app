@@ -11,6 +11,7 @@ module.exports = {
     "no-underscore-dangle": "off" ,
     "jsx-a11y/anchor-is-valid": [ "error", { "components": [ "Link" ], "specialLink": [ "to" ] } ],
     "no-param-reassign": ["error", { "props": false }],
+    "react/require-default-props": "off",
   },
   "settings": {
     "import/resolver": {

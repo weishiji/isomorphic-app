@@ -24,6 +24,7 @@ const styles = {
 
 const Home = (props) => {
   const { classes, userInfo } = props;
+  console.log(userInfo, 'sss');
   return (
     <Container>
       <Helmet>
@@ -37,9 +38,9 @@ const Home = (props) => {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Title
           </Typography>
-          {/* <Button color="inherit">
+          <Button color="inherit">
             {userInfo && userInfo.get('username')}
-          </Button> */}
+          </Button>
         </Toolbar>
       </AppBar>
       <Container padding={8}>
