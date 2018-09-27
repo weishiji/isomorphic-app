@@ -85,6 +85,7 @@ router.get(routesPath, (req, res, next) => {
     store.dispatch(UserAction.load(req.session.user));
     // userId = store.getState().user.data.userId;
   }
+  /* eslint camelcase: "off" */
   let _async_fetch = true;
 
   if (path.match(pathToRegexp('/editorial/channel/:type(\\w+-\\d+-\\d+)'))) {
@@ -115,7 +116,7 @@ router.get(routesPath, (req, res, next) => {
       .toArray()
       .join('');
 
-    const bundles = getBundles(stats, modules).map(bundle => bundle.file);
+    const bundles = getBundles(stats, modules).map(bundle => bundle.file.endsWith('.js'));
     if (context.status === 404) {
       res.status(404);
     }

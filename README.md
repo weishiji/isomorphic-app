@@ -26,14 +26,28 @@ BLUEBIRD_DEBUG=0
 
 ```webpack babel-loader babelrc```等开发基础的安装
 -------------
-- ```npm install babel-loader babel-core babel-preset-env webpack -D```
-- ``` npm install babel-plugin-module-resolver -D```
-- ``` npm install babel-preset-react -D```
-- ```npm install --save-dev babel-preset-es2015``` 可以让nodejs支持jsx文件
+```javascript
+npm install babel-loader babel-core babel-preset-env webpack -D
+npm install babel-plugin-module-resolver -D
+npm install babel-preset-react -D
+// 可以让nodejs支持jsx文件
+npm install babel-preset-es2015 -D  
+// 前端项目引入css文件后，后端无法解析css语法，需要忽略
+npm install babel-plugin-react-css-modules -D
+// .babelrc
+{
+  "plugins": [
+    ["react-css-modules", {
+      "removeImport": true ,
+    }]
+  ]
+}
+```
 
 服务端```import``` app 文件夹下的文件，需要解决路径的问题，同构app的情况下路径解决需要用到的组件为```babel-plugin-module-resolver```，但是由于我们使用了eslint语法检测工具，为防止vscode找不到alias的路径，我们继续需要引入eslint的一些插件解决此问题
 - ``` npm install babel-plugin-module-resolver -D```
 ```JSON
+
 // .babelrc
 "plugins": [
     ["module-resolver", {

@@ -37,9 +37,9 @@ const Home = (props) => {
           <Typography variant="title" color="inherit" className={classes.flex}>
             Title
           </Typography>
-          <Button color="inherit">
-            {userInfo.get('username')}
-          </Button>
+          {/* <Button color="inherit">
+            {userInfo && userInfo.get('username')}
+          </Button> */}
         </Toolbar>
       </AppBar>
       <Container padding={8}>

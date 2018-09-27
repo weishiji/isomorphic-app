@@ -7,6 +7,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const HappyPack = require('happypack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
 
@@ -167,17 +168,24 @@ exports.assets = ({ filename, path, fullPath = false }) => ({
   ],
 });
 
-exports.cssLoader = () => ({
+exports.extractCss = () => ({
   module: {
     rules: [
       {
         test: /\.css$/,
         use: [
-          'to-string-loader',
-          'css-loader',
-          // 'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          'css-loader'
         ],
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[name].[chunkhash:8].css',
+    })
+  ],
 });

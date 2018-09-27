@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-
 import PerfectScrollbar from 'perfect-scrollbar';
-// import scrollbarStyle from 'perfect-scrollbar/css/perfect-scrollbar.css';
+
+import 'perfect-scrollbar/css/perfect-scrollbar.css';
 
 const styles = {
   '@global': {
