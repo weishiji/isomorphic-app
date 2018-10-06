@@ -50,7 +50,7 @@ class ProductList extends React.Component {
     } = this.props;
     console.log(productList.toJS(), 'this is is');
     return (
-      <Container flex justify="space-around" className={classes.root}>
+      <Container scroll flex justify="space-around" className={classes.root}>
         <Helmet>
           <title>商品列表</title>
         </Helmet>
