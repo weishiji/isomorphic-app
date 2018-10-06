@@ -30,6 +30,7 @@ const styles = {
     maxWidth: 335,
     minWidth: 335,
     border: '1px solid #ddd',
+    marginBottom: 24,
   },
   media: {
     height: 445,
@@ -58,26 +59,22 @@ class ProductList extends React.Component {
             <CardActionArea>
               <CardMedia
                 className={classes.media}
-                image={`${imageHost}/${item.get('image')}`}
-                title="Contemplative Reptile"
+                image={`${imageHost}${item.get('image')}`}
+                title={item.get('name')}
               />
               <CardContent>
                 <Typography gutterBottom variant="headline" component="h2">
-                  Lizard
-            </Typography>
+                  {item.getIn(['designer', '0', 'name'])}
+                </Typography>
                 <Typography component="p">
-                  Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                  across all continents except Antarctica
-            </Typography>
+                  {item.get('name')}
+                </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions>
               <Button size="small" color="primary">
-                Share
-        </Button>
-              <Button size="small" color="primary">
-                Learn More
-        </Button>
+                {item.getIn(['price', 'price'])}
+              </Button>
             </CardActions>
           </Card>
         ))}
