@@ -96,7 +96,9 @@ const styles = {
 class Container extends React.Component {
   componentDidMount() {
     /* eslint no-new: "off" */
-    new PerfectScrollbar(this.box);
+    if (this.props.scroll) {
+      new PerfectScrollbar(this.box);
+    }
   }
   render() {
     const {
@@ -137,65 +139,6 @@ class Container extends React.Component {
       </Component>
     );
   }
-  // handleScroll = (event) => {
-  //   const { onScroll } = this.props;
-  //   return onScroll && onScroll(event.target.scrollTop);
-  // }
-
-  // render() {
-  //   const {
-  //     classes,
-  //     className: classNameProp,
-  //     component: Component,
-  //     flex,
-  //     stretch,
-  //     direction,
-  //     alignItems,
-  //     alignContent,
-  //     justify,
-  //     scroll,
-  //     padding,
-  //     maxWidth,
-  //     ...other
-  //   } = this.props;
-
-  //   const className = classNames(
-  //     classes.content,
-  //     {
-  //       [classes.flex]: flex,
-  //       [classes.stretch]: stretch,
-  //       [classes[`direction-${String(direction)}`]]: direction !== Container.defaultProps.direction,
-  //       [classes[`align-items-${String(alignItems)}`]]: alignItems !== Container.defaultProps.alignItems,
-  //       [classes[`align-content-${String(alignContent)}`]]: alignContent !== Container.defaultProps.alignContent,
-  //       [classes[`justify-${String(justify)}`]]: justify !== Container.defaultProps.justify,
-  //       [classes[`padding-${String(padding)}`]]: padding !== 0,
-  //       [classes[`max-width-${String(maxWidth)}`]]: maxWidth !== Container.defaultProps.maxWidth,
-  //     },
-  //     classNameProp,
-  //   );
-
-  //   return scroll
-  //     ? <Scrollbars
-  //         ref={(component) => { this.scrollView = component; }}
-  //         autoHide
-  //         autoHeight
-  //         autoHeightMax={'100%'}
-  //         style={{ flex: 1, position: 'relative' }}
-  //         onScroll={this.handleScroll}
-  //       >
-  //         <Component
-  //           ref={(component) => { this.contentView = component; }}
-  //           className={className}
-  //           {...other}
-  //         />
-  //       </Scrollbars>
-  //     : <Component
-  //         ref={(component) => { this.contentView = component; }}
-  //         className={className}
-  //         {...other}
-  //       />;
-  // }
-// }
 }
 
 Container.propTypes = {
@@ -205,6 +148,7 @@ Container.propTypes = {
   ]).isRequired,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  scroll: PropTypes.bool,
 
   flex: PropTypes.bool,
   stretch: PropTypes.bool,
@@ -225,6 +169,7 @@ Container.defaultProps = {
   justify: 'flex-start',
   padding: 0,
   maxWidth: 'xs',
+  scroll: false,
 };
 
 export default withStyles(styles)(Container);
