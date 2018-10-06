@@ -25,6 +25,16 @@ const Profile = Loadable({
   loading,
 });
 
+const ProductList = Loadable({
+  loader: () => import('./pages/ProductList'),
+  loading,
+});
+
+const ProductDetail = Loadable({
+  loader: () => import('./pages/ProductDetail'),
+  loading,
+});
+
 const routes = [
   {
     component: pageRoot,
@@ -43,6 +53,16 @@ const routes = [
         path: '/profile',
         exact: true,
         component: Profile,
+      },
+      {
+        path: '/product',
+        exact: true,
+        component: ProductList,
+      },
+      {
+        path: '/product/:id',
+        exact: true,
+        component: ProductDetail,
       },
     ],
   },

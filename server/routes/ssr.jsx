@@ -27,6 +27,7 @@ import stats from 'public/react-loadable.json';
 import {
   Countdown as CountdownAction,
   User as UserAction,
+  Product as ProductAction,
 } from 'actions';
 
 const router = express.Router();
@@ -92,6 +93,10 @@ router.get(routesPath, (req, res, next) => {
   if (path.match(pathToRegexp('/editorial/channel/:type(\\w+-\\d+-\\d+)'))) {
     _async_fetch = false;
     // promises.push(store.dispatch(EditorialChannelAction.fetch(params)));
+  }
+  if (path.match(pathToRegexp('/product'))) {
+    _async_fetch = false;
+    promises.push(store.dispatch(ProductAction.list()));
   }
 
   return Promise.all(promises).then(() => {

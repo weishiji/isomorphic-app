@@ -10,4 +10,7 @@ router.post('/user', controllers.user.login);
 router.get('/user', middlewares.checkSession, controllers.user.userInfo);
 router.delete('/user', middlewares.checkSession, controllers.user.logout);
 
+// 获取商品
+router.get('/productindex', controllers.product.list);
+
 module.exports = router;

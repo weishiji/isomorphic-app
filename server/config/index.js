@@ -13,4 +13,5 @@ module.exports = {
       db: 1,
     },
   },
+  rest: 'https://www.stylewe.com/rest',
 };
